@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    background-color: #EEF9BF;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+}
+header{
+    display: flex;
+    justify-content: center;
+}
+.title{
+    margin-top: 40px;
+    width: 540px;
+    height: 63px;
+    display: flex;
+    flex-direction: column;
+}
+.title h2 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 56px;
+    line-height: 66px;
+    letter-spacing: -0.004em;
+    color: #75B79E;
+}
+main {
+    margin-top: 47px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
