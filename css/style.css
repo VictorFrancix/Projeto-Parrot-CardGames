@@ -39,7 +39,7 @@ main {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    margin: 0 0 116px 122px;
+    margin: 0 0 50px 135px;
 }
 .card {
     width: 117px;
@@ -51,31 +51,31 @@ main {
     position: relative;  
 }
 
-.face {
+.back-face, .front-face {
     width: 117px;
     height: 146px;
     backface-visibility: hidden;
     background-color: #A7E9AF;
     border: 1px solid #99CEA8;
     border-radius: 5px;
-    -webkit-backface-visibility: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all .5s;
+    position: absolute;
+    transition: all 0.5s;
     transform-style: preserve-3d;
 }
 
-.back-face {
+.card .back-face {
     transform: rotateY(180deg);
 }
 
-.card:onclick .back-face {
+.selected .back-face, .check .back-face {
     transform: rotateY(0deg);
 }
 
-.card:onclick .front-face {
-    transform: rotateY(-180deg);
+.selected .front-face, .check .front-face {
+    transform: rotateY(180deg);
 }
 
 .card img {
