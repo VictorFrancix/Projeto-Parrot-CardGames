@@ -12,11 +12,12 @@ parrots.sort(randomize);
 
 let deck = document.querySelector(".deck");
 let back_face_images = [];
-let cards = 0;
-let flips = document.querySelectorAll(".selected");
+let cards;
+let flips;
 let movements = 0;
-let lockedcard = false;
-let finishedgame = false;
+let lockedcard;
+let finishedgame;
+let checked;
 
 
 function randomize() {
@@ -52,35 +53,51 @@ function CreateCards(cards) {
 }
 
 function FlipCard(card) {
-    if (!card.classList.contains("selected") && !lockedcard){
+    if (!card.classList.contains("selected") && !lockedcard &&!finishedgame){
         if (!card.classList.contains("check")){
             card.classList.add("selected");
             movements += 1;
             }
             
-            flips = document.querySelectorAll('.selected')
+        flips = document.querySelectorAll(".selected")
             
-            if(flips.length === 2){
-                lockedcard = true;
-                if(flips[0].innerHTML === flips[1].innerHTML){
-                    for(let i = 0; i < flips.length; i++){
-                        flips[i].classList.add("check");
-                    }
+        if(flips.length === 2){
+            lockedcard = true;
+            if(flips[0].innerHTML === flips[1].innerHTML){
+                for(let i = 0; i < flips.length; i++){
+                    flips[i].classList.add("check");
                 }
-                
-                setTimeout(
-                    `for (let i = 0; i < flips.length; i++){
-                        flips[i].classList.remove("selected");
-                    }
-                    lockedcard = false;`
-                    ,1000);
+            }
             
+            setTimeout(
+                `for (let i = 0; i < flips.length; i++){
+                    flips[i].classList.remove("selected");
+                }
+                lockedcard = false;`
+                ,1000);        
+            }
+
+        checked = document.querySelectorAll(".check");
+        if (checked.length === cards){
+            setTimeout(EndGame, 300);
+            finishedgame = true;
         }
-    } 
+    }
+}   
+
+function EndGame(){
+    alert(`Parabéns você ganhou o jogo em ${movements} jogadas`)
 }
 
-function play(){
+function ResetGame(){
+    movements = 0
+    finishedgame = false;
+    lockedcard = false;
+}
+
+function PlayGame(){
+    ResetGame()
     cards = ChooseNumberOfCards()
     CreateCards(cards)
 }
-play()
+PlayGame()
