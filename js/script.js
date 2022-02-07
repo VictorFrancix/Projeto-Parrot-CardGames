@@ -34,7 +34,7 @@ function counter() {
 }
 
 function ChooseNumberOfCards() {
-    let inputcards = parseInt(prompt("Com quantas cartas você quer jogar? (4-14)go"))
+    let inputcards = parseInt(prompt("Com quantas cartas você quer jogar? (4-14)"))
     while(inputcards%2!==0 || inputcards > 14 || inputcards < 4 ){
         inputcards = parseInt(prompt("Com quantas cartas você quer jogar?"));
     }
