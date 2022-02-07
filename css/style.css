@@ -85,7 +85,7 @@ main {
     position: absolute;
     transition: all 0.5s;
     transform-style: preserve-3d;
-    backface-visibility: hidden; 
+    -webkit-backface-visibility: hidden; 
 }
 
 .card .back-face {
@@ -103,7 +103,6 @@ main {
 .card img {
     width: 100px;
 }
-
 @media screen and (max-width: 800px) {
     header{
         width: 100%
@@ -146,4 +145,3 @@ main {
         max-width: 1290px;
     }
 }
-
