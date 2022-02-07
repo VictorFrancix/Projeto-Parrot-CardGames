@@ -85,6 +85,7 @@ main {
     position: absolute;
     transition: all 0.5s;
     transform-style: preserve-3d;
+    backface-visibility: hidden; 
 }
 
 .card .back-face {
