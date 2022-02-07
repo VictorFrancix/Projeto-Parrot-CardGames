@@ -98,7 +98,15 @@ function FlipCard(card) {
 function EndGame(){
     clearInterval(time);
     alert(`Parabéns, você ganhou o jogo em ${movements} jogadas e ${seconds} segundos`)
-    
+    let refreshgame = prompt("Você deseja jogar novamente? (sim/não)")
+    while (refreshgame.toUpperCase() !== 'SIM' && refreshgame.toUpperCase() !== 'NÃO'){
+        refreshgame = prompt('Resposta inválida! Deseja jogar novamente (sim/não)?')
+    }
+    if (refreshgame.toUpperCase() === 'SIM'){ 
+        let game = document.querySelector('.deck');
+        game.innerHTML = '';
+        Play();
+    }
 }
 
 function ResetGame(){
@@ -109,9 +117,9 @@ function ResetGame(){
     seconds = 0
 }
 
-function PlayGame(){
+function Play(){
     ResetGame()
     cards = ChooseNumberOfCards()
     CreateCards(cards)
 }
-PlayGame()
+Play()
