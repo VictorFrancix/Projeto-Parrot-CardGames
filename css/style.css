@@ -91,14 +91,18 @@ main {
 
 .card .back-face {
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
 }
 
 .selected .back-face, .check .back-face {
     transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
 }
 
 .selected .front-face, .check .front-face {
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    
 }
 
 .card img {
