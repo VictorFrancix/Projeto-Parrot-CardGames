@@ -18,10 +18,19 @@ let movements = 0;
 let lockedcard;
 let finishedgame;
 let checked;
+let timer = document.querySelector(".timer")
+let seconds = 0
+let time = null;
 
 
 function randomize() {
     return Math.random() - 0.5;
+}
+
+function counter() {
+    seconds += 1;
+    
+    timer.innerHTML = seconds;
 }
 
 function ChooseNumberOfCards() {
@@ -50,6 +59,8 @@ function CreateCards(cards) {
             </div>
         </div> `
     }
+
+    time = setInterval(counter, 1000);
 }
 
 function FlipCard(card) {
@@ -76,7 +87,6 @@ function FlipCard(card) {
                 lockedcard = false;`
                 ,1000);        
             }
-
         checked = document.querySelectorAll(".check");
         if (checked.length === cards){
             setTimeout(EndGame, 300);
@@ -86,13 +96,17 @@ function FlipCard(card) {
 }   
 
 function EndGame(){
-    alert(`Parabéns você ganhou o jogo em ${movements} jogadas`)
+    clearInterval(time);
+    alert(`Parabéns, você ganhou o jogo em ${movements} jogadas e ${seconds} segundos`)
+    
 }
 
 function ResetGame(){
     movements = 0
     finishedgame = false;
     lockedcard = false;
+    timer.innerHTML = 0
+    seconds = 0
 }
 
 function PlayGame(){
