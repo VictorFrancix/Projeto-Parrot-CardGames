@@ -8,16 +8,18 @@ let parrots = [
     "unicornparrot"
 ];
 
-parrots.sort(comparador);
+parrots.sort(randomize);
 
 let deck = document.querySelector(".deck");
 let back_face_images = [];
 let cards = 0;
-let flips = [];
+let flips = document.querySelectorAll(".selected");
 let movements = 0;
+let lockedcard = false;
+let finishedgame = false;
 
 
-function comparador() {
+function randomize() {
     return Math.random() - 0.5;
 }
 
@@ -35,6 +37,8 @@ function CreateCards(cards) {
         back_face_images[2*i+1] = parrots[i];
     }
     
+    back_face_images.sort(randomize);
+
     for(let i = 0; i < cards; i++ ){
         deck.innerHTML += `<div class="card" onclick="FlipCard(this)" data-identifier="card">
             <div class="front-face" data-identifier="front-face">
@@ -48,22 +52,31 @@ function CreateCards(cards) {
 }
 
 function FlipCard(card) {
-    card.classList.add("selected")
-    flips = document.querySelectorAll(".selected")
-    movements += 1
-    if(flips.length > 1){
-        if(flips[0].innerHTML === flips[1].innerHTML){
-            for(let i = 0; i < flips.length; i++){
-                flips[i].classList.add("check")
+    if (!card.classList.contains("selected") && !lockedcard){
+        if (!card.classList.contains("check")){
+            card.classList.add("selected");
+            movements += 1;
             }
+            
+            flips = document.querySelectorAll('.selected')
+            
+            if(flips.length === 2){
+                lockedcard = true;
+                if(flips[0].innerHTML === flips[1].innerHTML){
+                    for(let i = 0; i < flips.length; i++){
+                        flips[i].classList.add("check");
+                    }
+                }
+                
+                setTimeout(
+                    `for (let i = 0; i < flips.length; i++){
+                        flips[i].classList.remove("selected");
+                    }
+                    lockedcard = false;`
+                    ,1000);
+            
         }
-        setTimeout(
-            `for (let i = 0; i < flips.length; i++){
-                flips[i].classList.remove('selected')
-            }`, 1000); 
-    }
-
-
+    } 
 }
 
 function play(){
